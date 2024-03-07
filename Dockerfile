@@ -16,4 +16,4 @@ WORKDIR /home/www
 # 执行命令
 ENTRYPOINT   ["java","-jar","/home/www/spider-flow.jar"]
 
-CMD java -jar ./home/www/spider-flow.jar
+#CMD java -jar ./home/www/spider-flow.jar
