@@ -1,13 +1,19 @@
+# 环境
 FROM java:8
 
-MAINTAINER octopus
+# 创建目录存放 jar 包与配置文件
+RUN mkdir -p /home/www
 
-RUN mkdir -p /spider-flow
+# 拷贝jar
+ADD ./spider-flow-web/target/spider-flow.jar   /home/www/spider-flow.jar
 
-WORKDIR /spider-flow
+# 设置暴露的端口号
+EXPOSE 8080
 
-EXPOSE 8088
+# 设置工作目录
+WORKDIR /home/www
 
-ADD ./spider-flow-web/target/spider-flow.jar ./
+# 执行命令
+ENTRYPOINT   ["java","-jar","/home/www/spider-flow.jar"]
 
-CMD sleep 30;java -Djava.security.egd=file:/dev/./urandom -jar spider-flow.jar
+CMD java -jar ./home/www/spider-flow.jar
