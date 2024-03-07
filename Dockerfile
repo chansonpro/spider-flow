@@ -1,5 +1,5 @@
 # 环境
-FROM java:8
+FROM openjdk:8-jdk-alpine
 
 # 创建目录存放 jar 包与配置文件
 RUN mkdir -p /home/www
