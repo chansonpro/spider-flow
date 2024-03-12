@@ -76,3 +76,14 @@ CREATE TABLE `sp_flow_notice` (
   `end_notice` char(1) DEFAULT '0' COMMENT '流程结束通知:1:开启通知,0:关闭通知',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '爬虫任务通知表';
+# 新增任务采集之后的数据存储表
+DROP TABLE IF EXISTS `sp_flow_task_source_data`;
+CREATE TABLE `sp_flow_task_source_data` (
+                                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                                            `program_name` varchar(200) DEFAULT NULL COMMENT '项目名称',
+                                  `program_address` char(200) DEFAULT NULL COMMENT '项目名称',
+                                  `program_desc` longtext COMMENT '项目描述',
+                                  PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '爬虫任务采集数据原表';
+
+

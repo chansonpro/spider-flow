@@ -72,11 +72,11 @@ public class Spider {
 			variables = new HashMap<>();
 		}
 		SpiderNode root = SpiderFlowUtils.loadXMLFromString(spiderFlow.getXml());
-		// 流程开始通知
-		flowNoticeService.sendFlowNotice(spiderFlow, FlowNoticeType.startNotice);
+		// FIXME 流程开始通知
+//		flowNoticeService.sendFlowNotice(spiderFlow, FlowNoticeType.startNotice);
 		executeRoot(root, context, variables);
-		// 流程结束通知
-		flowNoticeService.sendFlowNotice(spiderFlow, FlowNoticeType.endNotice);
+		// FIXME 流程结束通知
+//		flowNoticeService.sendFlowNotice(spiderFlow, FlowNoticeType.endNotice);
 		return context.getOutputs();
 	}
 
@@ -208,7 +208,7 @@ public class Spider {
 		if (!executeCondition(fromNode, node, variables, context)) {
 			return;
 		}
-		logger.debug("执行节点[{}:{}]", node.getNodeName(), node.getNodeId());
+		logger.debug("执行节点:[{}:{}]", node.getNodeName(), node.getNodeId());
 		//找到对应的执行器
 		ShapeExecutor executor = ExecutorsUtils.get(shape);
 		if (executor == null) {

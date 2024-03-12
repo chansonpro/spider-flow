@@ -79,7 +79,7 @@ public class SpiderJob extends QuartzJobBean {
 			context = SpiderJobContext.create(this.workspace, spiderFlow.getId(),task.getId(),false);
 			SpiderContextHolder.set(context);
 			contextMap.put(task.getId(), context);
-			logger.info("开始执行任务{}", spiderFlow.getName());
+			logger.info("开始执行任务:{}", spiderFlow.getName());
 			spider.run(spiderFlow, context);
 			logger.info("执行任务{}完毕，下次执行时间：{}", spiderFlow.getName(), nextExecuteTime == null ? null : DateFormatUtils.format(nextExecuteTime, "yyyy-MM-dd HH:mm:ss"));
 		} catch (Exception e) {
