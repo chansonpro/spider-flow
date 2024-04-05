@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spiderflow.Grammerable;
 import org.spiderflow.annotation.Comment;
@@ -39,7 +38,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  * 爬虫Controller
  * @author Administrator
@@ -49,6 +49,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/spider")
 public class SpiderFlowController {
 
+	private static final Logger LOGGER = LogManager.getLogger(SpiderFlowController.class);
 	@Autowired
 	private List<FunctionExecutor> functionExecutors;
 
@@ -69,7 +70,6 @@ public class SpiderFlowController {
 
 	private final List<Grammer> grammers = new ArrayList<Grammer>();
 
-	private static Logger logger = LoggerFactory.getLogger(SpiderFlowController.class);
 
 	@PostConstruct
 	private void init(){
@@ -102,6 +102,7 @@ public class SpiderFlowController {
 	 */
 	@RequestMapping("/list")
 	public IPage<SpiderFlow> list(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "limit", defaultValue = "1") Integer size, @RequestParam(name = "name", defaultValue = "") String name) {
+
 		return spiderFlowService.selectSpiderPage(new Page<>(page, size), name);
 	}
 
@@ -193,7 +194,7 @@ public class SpiderFlowController {
 		} catch(FileNotFoundException e){
 			return new JsonBean<>(0,"日志文件不存在");
 		} catch (IOException e) {
-			logger.error("读取日志文件出错",e);
+			LOGGER.error("读取日志文件出错",e);
 			return new JsonBean<>(-1,"读取日志文件出错");
 		}
 	}

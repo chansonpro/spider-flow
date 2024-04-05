@@ -113,6 +113,19 @@
 			<artifactId>xsoup</artifactId>
 			<version>${xsoup.version}</version>
 		</dependency>
+
+<!--		添加日志包-->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.17.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.17.1</version>
+		</dependency>
+<!--		添加日志包-->
 	</dependencies>
 
 	<dependencyManagement>
