@@ -45,6 +45,7 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 	@Autowired
 	private FlowNoticeMapper flowNoticeMapper;
 
+
 	private static Logger logger = LoggerFactory.getLogger(SpiderFlowService.class);
 
 	@Value("${spider.workspace}")

@@ -1,10 +1,12 @@
 package org.spiderflow.controller;
 
+import com.alibaba.dashscope.exception.InputRequiredException;
+import com.alibaba.dashscope.exception.NoApiKeyException;
+import org.spiderflow.core.service.CallWithMessageService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.slf4j.LoggerFactory;
 import org.spiderflow.Grammerable;
 import org.spiderflow.annotation.Comment;
 import org.spiderflow.core.model.SpiderFlow;
@@ -61,6 +63,10 @@ public class SpiderFlowController {
 
 	@Autowired
 	private SpiderFlowService spiderFlowService;
+
+	@Autowired
+	private CallWithMessageService callWithMessageService;
+
 
 	@Autowired(required = false)
 	private List<PluginConfig> pluginConfigs;
@@ -156,7 +162,12 @@ public class SpiderFlowController {
 
 	@RequestMapping("/run")
 	public void run(String id){
-		spiderFlowService.run(id);
+        try {
+            callWithMessageService.CallWithMess("杭州西湖");
+        } catch (NoApiKeyException | InputRequiredException e) {
+            throw new RuntimeException(e);
+        }
+        spiderFlowService.run(id);
 	}
 
 	@RequestMapping("/cron")
