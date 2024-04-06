@@ -21,7 +21,7 @@ public class ResourcesConfiguration implements WebMvcConfigurer{
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-				.allowedOrigins("*")
+				.allowedOrigins("http://120.26.13.178:8080/")
 				.allowedMethods("GET","POST","OPTIONS")
 				.allowCredentials(true);
 	}
